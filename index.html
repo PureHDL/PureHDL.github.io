@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PureHDL (PHDL) — Wire the Future</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a2e;
+    --border: #2a2a3e;
+    --text: #e2e2f0;
+    --text2: #8888aa;
+    --accent: #6c6cff;
+    --accent2: #4a9eff;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --red: #f87171;
+    --code-bg: #0d0d1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ──── Navigation ──── */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    background: rgba(10, 10, 15, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  nav .logo {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  nav .logo span { color: var(--accent); }
+  nav a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--text); }
+  nav .right { margin-left: auto; display: flex; gap: 1.5rem; align-items: center; }
+
+  /* ──── Hero ──── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 2rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -20%;
+    width: 60%;
+    height: 80%;
+    background: radial-gradient(ellipse, rgba(108, 108, 255, 0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-size: 0.8rem;
+    color: var(--text2);
+    margin-bottom: 2rem;
+    width: fit-content;
+  }
+  .hero-badge .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 .highlight {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p.sub {
+    font-size: 1.15rem;
+    color: var(--text2);
+    max-width: 600px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:hover { background: #5a5aee; transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--text2); transform: translateY(-1px); }
+
+  /* ──── Sections ──── */
+  section {
+    padding: 5rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  section .desc {
+    color: var(--text2);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin-bottom: 3rem;
+  }
+
+  /* ──── Design Principles ──── */
+  .principles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .principle {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .principle:hover { border-color: var(--accent); }
+  .principle .num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: rgba(108, 108, 255, 0.1);
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+  .principle h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .principle p {
+    font-size: 0.875rem;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* ──── Code ──── */
+  .code-block {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+  .code-block .header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--text2);
+  }
+  .code-block .header .dots { display: flex; gap: 6px; }
+  .code-block .header .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .code-block .header .dot.r { background: #ff5f56; }
+  .code-block .header .dot.y { background: #ffbd2e; }
+  .code-block .header .dot.g { background: #27c93f; }
+  .code-block pre {
+    padding: 1.25rem;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    tab-size: 4;
+  }
+  .code-block code { font-family: inherit; }
+
+  /* ──── Comparison Table ──── */
+  .comparison {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2rem 0;
+    font-size: 0.9rem;
+  }
+  .comparison th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    color: var(--text);
+  }
+  .comparison th:first-child { border-radius: 8px 0 0 0; }
+  .comparison th:last-child { border-radius: 0 8px 0 0; }
+  .comparison td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text2);
+  }
+  .comparison tr:hover td { background: rgba(108, 108, 255, 0.03); }
+  .comparison .yes { color: var(--green); }
+  .comparison .no { color: var(--red); }
+  .comparison .mid { color: var(--orange); }
+
+  /* ──── Side-by-side code comparison ──── */
+  .code-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  @media (max-width: 768px) {
+    .code-side { grid-template-columns: 1fr; }
+  }
+  .code-side .col { min-width: 0; }
+  .code-side .col .code-block { margin: 0; }
+  .code-side .col h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text2);
+    text-align: center;
+    letter-spacing: 1px;
+  }
+  .code-side .col h4 .x { color: var(--red); }
+  .code-side .col h4 .check { color: var(--green); }
+  .code-side .code-block pre { font-size: 0.78rem; }
+
+  /* ──── Footer ──── */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text2);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* ──── Responsive ──── */
+  @media (max-width: 640px) {
+    section { padding: 3rem 1rem; }
+    .hero { padding: 5rem 1rem 3rem; }
+    .principles { grid-template-columns: 1fr; }
+    nav { padding: 0.75rem 1rem; gap: 1rem; }
+    nav .right { gap: 1rem; }
+  }
+
+  /* ──── Syntax Highlighting ──── */
+  .kw { color: var(--accent); }
+  .ty { color: var(--accent2); }
+  .cm { color: #5a5a7a; font-style: italic; }
+  .str { color: var(--green); }
+  .num { color: var(--orange); }
+  .op { color: #c084fc; }
+  .fn { color: #fbbf24; }
+</style>
+</head>
+<body>
+
+<!-- ──── Nav ──── -->
+<nav>
+  <a href="#" class="logo">
+    <svg width="28" height="28" viewBox="0 0 400 400" style="vertical-align: middle;">
+      <defs>
+        <linearGradient id="navg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#6c6cff"/>
+          <stop offset="100%" stop-color="#4a9eff"/>
+        </linearGradient>
+      </defs>
+      <rect x="80" y="90" width="240" height="220" rx="12" ry="12" fill="none" stroke="url(#navg)" stroke-width="8" opacity="0.2"/>
+      <text x="200" y="208" text-anchor="middle" dominant-baseline="central" font-family="monospace" font-size="72" font-weight="700" fill="url(#navg)" letter-spacing="4">P</text>
+    </svg>
+    <span style="margin-left: 6px;"><span style="color: var(--accent);">Pure</span>HDL</span>
+  </a>
+  <div class="right">
+    <a href="#principles">Principles</a>
+    <a href="#code">Code</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="https://github.com/PureHDL" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<!-- ──── Hero ──── -->
+<div class="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    v0.1.0 · Pre-alpha
+  </div>
+  <div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+    <img src="logo.svg" alt="PureHDL logo" width="180" height="180" style="flex-shrink: 0;">
+    <div>
+      <h1 style="margin-bottom: 0.75rem;">
+        Wire the<br>
+        <span class="highlight">Future</span>
+      </h1>
+      <p class="sub" style="margin-bottom: 0;">
+        PureHDL is a modern hardware description language built from the ground up
+        to replace Verilog and SystemVerilog. Type-safe, synthesizable, and
+        engineered for the chip design workflows of the next decade.
+      </p>
+    </div>
+  </div>
+  <div class="hero-actions">
+    <a href="#code" class="btn btn-primary">See the Code →</a>
+    <a href="https://github.com/PureHDL" target="_blank" class="btn btn-secondary">GitHub ↗</a>
+  </div>
+</div>
+
+<!-- ──── Principles ──── -->
+<section id="principles">
+  <h2>Design Principles</h2>
+  <p class="desc">Eight pillars that guide every decision in PureHDL — from syntax to compiler architecture.</p>
+
+  <div class="principles">
+    <div class="principle">
+      <div class="num">1</div>
+      <h3>100% Synthesizable</h3>
+      <p>No split between simulation and synthesis subsets. If it compiles, it can go to silicon. Every construct in the language is hardware-ready.</p>
+    </div>
+    <div class="principle">
+      <div class="num">2</div>
+      <h3>Time in the Type System</h3>
+      <p>No <code>reg</code> vs <code>wire</code>. No blocking vs non-blocking assignments. Time is explicit — <code>seq()</code> for sequential, <code>comb</code> for combinational. One assignment operator, context determines semantics.</p>
+    </div>
+    <div class="principle">
+      <div class="num">3</div>
+      <h3>Type-Safe Hardware</h3>
+      <p>Width mismatches, direction errors, combinational loops — caught at compile time. <code>In&lt;T&gt;</code> / <code>Out&lt;T&gt;</code> carry direction in the type. No implicit truncation.</p>
+    </div>
+    <div class="principle">
+      <div class="num">4</div>
+      <h3>True Generics</h3>
+      <p>Not the <code>parameter</code> hack of Verilog. Typed generics with trait constraints, just like Rust. <code>#(Width: UInt = 8)</code> — type-safe at the parameter level.</p>
+    </div>
+    <div class="principle">
+      <div class="num">5</div>
+      <h3>Module Integration as a Primitive</h3>
+      <p>Connecting modules should feel like calling a function. <code>dma.mst = uart.slv</code> — the compiler checks interface compatibility. No more hunting through port lists.</p>
+    </div>
+    <div class="principle">
+      <div class="num">6</div>
+      <h3>PPA Visibility</h3>
+      <p>Annotations and type information let the compiler reason about timing, area, and power during code generation. <code>pipeline Crc32: 4 stages</code> — explicit, not emergent.</p>
+    </div>
+    <div class="principle">
+      <div class="num">7</div>
+      <h3>Incremental Compilation</h3>
+      <p>Change one module → recompile only that module. No more hour-long full rebuilds. A modern compiler for modern workflows.</p>
+    </div>
+    <div class="principle">
+      <div class="num">8</div>
+      <h3>AI-Friendly</h3>
+      <p>Every concept has one canonical form. Strong types serve as implicit specification. Deterministic mapping from code to hardware reduces LLM error rates.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ──── Code Examples ──── -->
+<section id="code">
+  <h2>PureHDL in 60 Seconds</h2>
+  <p class="desc">Three examples that cover the core of the language.</p>
+
+  <div class="code-block">
+    <div class="header">
+      <div class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+      counter.phdl
+    </div>
+    <pre><code><span class="kw">module</span> Counter <span class="kw">#</span>(
+    Width: <span class="ty">UInt</span> = <span class="num">8</span>,
+) (
+    clk: <span class="ty">In</span>&lt;<span class="ty">Clock</span>&gt;,
+    rst: <span class="ty">In</span>&lt;<span class="ty">Reset</span>&gt;,
+    en:  <span class="ty">In</span>&lt;<span class="ty">Bool</span>&gt;,
+    val: <span class="ty">Out</span>&lt;<span class="ty">UInt</span>[Width]&gt;,
+) {
+    <span class="cm">// Sequential logic — no reg, no always, no <=</span>
+    <span class="kw">seq</span>(clk, rst) {
+        <span class="kw">if</span> rst { val = <span class="num">0</span> }
+        <span class="kw">elif</span> en { val = val + <span class="num">1</span> }
+    }
+}</code></pre>
+  </div>
+
+  <div class="code-block">
+    <div class="header">
+      <div class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+      fsm.phdl
+    </div>
+    <pre><code><span class="kw">fsm</span>(onehot) Controller {
+    <span class="kw">state</span> Idle, Fetch, Decode;
+
+    Idle  -> Fetch <span class="kw">when</span> start;
+    Fetch -> Decode <span class="kw">when</span> done;
+    Decode -> Idle;
+
+    <span class="cm">// Moore output derived from state</span>
+    out.busy = (state != Idle);
+
+    <span class="cm">// Entry/exit actions</span>
+    <span class="kw">on_entry</span>(Decode) { data_valid = <span class="kw">true</span>; }
+    <span class="kw">on_exit</span>(Decode)  { data_valid = <span class="kw">false</span>; }
+}</code></pre>
+  </div>
+
+  <div class="code-block">
+    <div class="header">
+      <div class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+      extern.phdl — Verilog FFI
+    </div>
+    <pre><code><span class="cm">// Call existing Verilog IP directly from PureHDL</span>
+<span class="kw">extern</span> <span class="str">"verilog"</span> {
+    <span class="kw">module</span> VerilogFifo <span class="kw">#</span>(
+        Width: <span class="ty">UInt</span> = <span class="num">8</span>,
+        Depth: <span class="ty">UInt</span> = <span class="num">16</span>,
+    ) (
+        clk: <span class="ty">In</span>&lt;<span class="ty">Clock</span>&gt;,
+        din: <span class="ty">In</span>&lt;<span class="ty">UInt</span>[Width]&gt;,
+        dout: <span class="ty">Out</span>&lt;<span class="ty">UInt</span>[Width]&gt;,
+    );
+}
+
+<span class="kw">module</span> Top (
+    clk: <span class="ty">In</span>&lt;<span class="ty">Clock</span>&gt;,
+    tx_data: <span class="ty">In</span>&lt;<span class="ty">UInt</span>[<span class="num">8</span>]&gt;,
+    rx_data: <span class="ty">Out</span>&lt;<span class="ty">UInt</span>[<span class="num">8</span>]&gt;,
+) {
+    <span class="cm">// Instantiate and connect — compiler checks types</span>
+    <span class="kw">let</span> fifo = <span class="kw">new</span> VerilogFifo(Width=<span class="num">8</span>);
+    fifo.clk  = clk;
+    fifo.din  = tx_data;
+    fifo.dout = rx_data;
+}</code></pre>
+  </div>
+</section>
+
+<!-- ──── Comparison ──── -->
+<section>
+  <h2>PureHDL vs. the World</h2>
+  <p class="desc">How PureHDL stacks up against existing hardware description languages.</p>
+
+  <div style="overflow-x: auto;">
+    <table class="comparison">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Verilog</th>
+          <th>Chisel</th>
+          <th>SpinalHDL</th>
+          <th>PureHDL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>No reg/wire confusion</td>
+          <td class="no">✗</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td>Single assignment operator</td>
+          <td class="no">✗</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td>Strong type system</td>
+          <td class="no">✗</td>
+          <td class="mid">Partial</td>
+          <td class="mid">Partial</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td>True generics</td>
+          <td class="no">✗</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td>Human-readable output</td>
+          <td class="yes">—</td>
+          <td class="no">✗</td>
+          <td class="mid">Partial</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td>First-class FSM</td>
+          <td class="no">✗</td>
+          <td class="no">✗</td>
+          <td class="no">✗</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td>Verilog FFI</td>
+          <td class="yes">—</td>
+          <td class="mid">BlackBox</td>
+          <td class="mid">BlackBox</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td>PPA escape hatch</td>
+          <td class="yes">(it's all PPA)</td>
+          <td class="no">✗</td>
+          <td class="mid">Limited</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td>Incremental compilation</td>
+          <td class="no">✗</td>
+          <td class="no">✗</td>
+          <td class="no">✗</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td>Package manager</td>
+          <td class="no">✗</td>
+          <td class="mid">(sbt)</td>
+          <td class="mid">(sbt)</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td>100% synthesizable</td>
+          <td class="no">✗</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td>AI-friendly design</td>
+          <td class="no">✗</td>
+          <td class="no">✗</td>
+          <td class="no">✗</td>
+          <td class="yes">✓</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ──── Code Comparison ──── -->
+<section>
+  <h2>PureHDL vs Verilog — Side by Side</h2>
+  <p class="desc">See how PureHDL eliminates Verilog's verbosity and traps. Same hardware, half the code.</p>
+
+  <!-- Counter -->
+  <h3 style="margin-bottom: 1rem; font-weight: 600;">1. Counter — no <code>reg</code>, no <code>wire</code>, no <code>always</code>, no <code><=</code></h3>
+  <div class="code-side">
+    <div class="col">
+      <h4><span class="x">✗</span> Verilog</h4>
+      <div class="code-block">
+        <pre style="font-size: 0.75rem;"><code><span class="cm">// 17 lines, 4 keywords to learn</span>
+<span class="kw">module</span> Counter <span class="kw">#</span>(<span class="kw">parameter</span> Width = <span class="num">8</span>)
+(
+    <span class="kw">input</span>  <span class="kw">wire</span>       clk, rst, en,
+    <span class="kw">output</span> <span class="kw">reg</span>  [Width<span class="num">-1</span>:<span class="num">0</span>] val
+);
+    <span class="kw">always</span> @(<span class="kw">posedge</span> clk <span class="kw">or</span> <span class="kw">posedge</span> rst) <span class="kw">begin</span>
+        <span class="kw">if</span> (rst)
+            val &lt;= <span class="num">0</span>;
+        <span class="kw">else if</span> (en)
+            val &lt;= val + <span class="num">1</span>;
+    <span class="kw">end</span>
+<span class="kw">endmodule</span></code></pre>
+      </div>
+    </div>
+    <div class="col">
+      <h4><span class="check">✓</span> PureHDL</h4>
+      <div class="code-block">
+        <pre style="font-size: 0.75rem;"><code><span class="cm">// 9 lines, 0 new keywords</span>
+<span class="kw">module</span> Counter <span class="kw">#</span>(Width: <span class="ty">UInt</span> = <span class="num">8</span>) (
+    clk: <span class="ty">In</span>&lt;<span class="ty">Clock</span>&gt;, rst: <span class="ty">In</span>&lt;<span class="ty">Reset</span>&gt;,
+    en: <span class="ty">In</span>&lt;<span class="ty">Bool</span>&gt;, val: <span class="ty">Out</span>&lt;<span class="ty">UInt</span>[Width]&gt;,
+) {
+    <span class="kw">seq</span>(clk, rst) {
+        <span class="kw">if</span> rst { val = <span class="num">0</span> }
+        <span class="kw">elif</span> en { val = val + <span class="num">1</span> }
+    }
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mux -->
+  <h3 style="margin: 2rem 0 1rem; font-weight: 600;">2. Mux — <code>comb</code> replaces <code>always @(*)</code> + <code>case</code></h3>
+  <div class="code-side">
+    <div class="col">
+      <h4><span class="x">✗</span> Verilog</h4>
+      <div class="code-block">
+        <pre style="font-size: 0.75rem;"><code><span class="kw">module</span> Mux4 (
+    <span class="kw">input</span>  <span class="kw">wire</span> [<span class="num">1</span>:<span class="num">0</span>] sel,
+    <span class="kw">input</span>  <span class="kw">wire</span> [<span class="num">7</span>:<span class="num">0</span>] a, b, c, d,
+    <span class="kw">output</span> <span class="kw">reg</span>  [<span class="num">7</span>:<span class="num">0</span>] out
+);
+    <span class="kw">always</span> @(*) <span class="kw">begin</span>
+        <span class="kw">case</span> (sel)
+            <span class="num">0</span>: out = a;
+            <span class="num">1</span>: out = b;
+            <span class="num">2</span>: out = c;
+            <span class="kw">default</span>: out = d;
+        <span class="kw">endcase</span>
+    <span class="kw">end</span>
+<span class="kw">endmodule</span></code></pre>
+      </div>
+    </div>
+    <div class="col">
+      <h4><span class="check">✓</span> PureHDL</h4>
+      <div class="code-block">
+        <pre style="font-size: 0.75rem;"><code><span class="kw">module</span> Mux4 (
+    sel: <span class="ty">In</span>&lt;<span class="ty">UInt</span>[<span class="num">2</span>]&gt;,
+    a, b, c, d: <span class="ty">In</span>&lt;<span class="ty">UInt</span>[<span class="num">8</span>]&gt;,
+    out: <span class="ty">Out</span>&lt;<span class="ty">UInt</span>[<span class="num">8</span>]&gt;,
+) {
+    <span class="kw">comb</span> {
+        out = <span class="kw">case</span>(sel) {
+            <span class="num">0</span> -> a,
+            <span class="num">1</span> -> b,
+            <span class="num">2</span> -> c,
+            _ -> d,
+        }
+    }
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- FSM -->
+  <h3 style="margin: 2rem 0 1rem; font-weight: 600;">3. FSM — first-class vs boilerplate</h3>
+  <div class="code-side">
+    <div class="col">
+      <h4><span class="x">✗</span> Verilog</h4>
+      <div class="code-block">
+        <pre style="font-size: 0.75rem;"><code><span class="cm">// Must manually maintain state encoding,
+// state register, next state logic,
+// and output logic — 3 separate blocks</span>
+<span class="kw">localparam</span> [<span class="num">1</span>:<span class="num">0</span>] IDLE = <span class="num">0</span>, FETCH = <span class="num">1</span>;
+<span class="kw">reg</span> [<span class="num">1</span>:<span class="num">0</span>] state, next_state;
+
+<span class="kw">always</span> @(<span class="kw">posedge</span> clk)
+    state &lt;= next_state;
+
+<span class="kw">always</span> @(*) <span class="kw">begin</span>
+    <span class="kw">case</span> (state)
+        IDLE:   next_state = FETCH;
+        FETCH:  next_state = IDLE;
+    <span class="kw">endcase</span>
+<span class="kw">end</span>
+
+<span class="kw">assign</span> busy = (state != IDLE);</code></pre>
+      </div>
+    </div>
+    <div class="col">
+      <h4><span class="check">✓</span> PureHDL</h4>
+      <div class="code-block">
+        <pre style="font-size: 0.75rem;"><code><span class="cm">// Everything in one block. Compiler
+// generates state register, next-state
+// logic, and encoding automatically.</span>
+<span class="kw">fsm</span>(onehot) Controller {
+    <span class="kw">state</span> Idle, Fetch;
+
+    Idle  -> Fetch <span class="kw">when</span> start;
+    Fetch -> Idle;
+
+    out.busy = (state != Idle);
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div style="margin-top: 2rem; padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+    <p style="color: var(--text2); line-height: 1.8;">
+      <strong style="color: var(--text);">Bottom line:</strong>
+      Verilog forces you to manage <span style="color: var(--red);">implementation details</span> — 
+      <code>reg</code>/<code>wire</code>, blocking vs non-blocking, sensitivity lists, state encoding.
+      PureHDL lets you describe <span style="color: var(--green);">what you want</span> —
+      the compiler handles the rest. Less code, fewer bugs, faster design.
+    </p>
+  </div>
+
+</section>
+
+<!-- ──── Roadmap ──── -->
+<section id="roadmap">
+  <h2>Roadmap</h2>
+  <p class="desc">What's coming next for PureHDL.</p>
+
+  <div style="display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
+      <div style="font-size: 0.75rem; color: var(--green); font-weight: 600; margin-bottom: 0.5rem;">NOW</div>
+      <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Compiler MVP</h3>
+      <ul style="list-style: none; color: var(--text2); font-size: 0.85rem; line-height: 1.8;">
+        <li>✓ Lexer → Parser → AST</li>
+        <li>✓ Verilog codegen (comb, seq, fsm)</li>
+        <li>○ Type checking & width inference</li>
+        <li>○ Better error messages</li>
+        <li>○ phdl.toml package format</li>
+      </ul>
+    </div>
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
+      <div style="font-size: 0.75rem; color: var(--accent2); font-weight: 600; margin-bottom: 0.5rem;">NEXT</div>
+      <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Core Language</h3>
+      <ul style="list-style: none; color: var(--text2); font-size: 0.85rem; line-height: 1.8;">
+        <li>Interface & module integration</li>
+        <li>extern "verilog" codegen</li>
+        <li>unsafe_impl support</li>
+        <li>FSM entry/exit actions</li>
+        <li>Assertion synthesis</li>
+      </ul>
+    </div>
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
+      <div style="font-size: 0.75rem; color: var(--orange); font-weight: 600; margin-bottom: 0.5rem;">LATER</div>
+      <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Ecosystem</h3>
+      <ul style="list-style: none; color: var(--text2); font-size: 0.85rem; line-height: 1.8;">
+        <li>Standard library (FIFO, AXI, UART)</li>
+        <li>Package registry</li>
+        <li>LSP / IDE support</li>
+        <li>Formal verification integration</li>
+        <li>Yosys / Vivado plugin</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ──── Footer ──── -->
+<footer>
+  <p>
+    PureHDL — Apache 2.0 License &nbsp;·&nbsp;
+    <a href="https://github.com/PureHDL">GitHub</a> &nbsp;·&nbsp;
+    Built with Rust 🦀
+  </p>
+</footer>
+
+</body>
+</html>

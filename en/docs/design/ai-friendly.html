@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="en" class> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>PureHDL — AI-Friendly Hardware Design</title><link rel="icon" type="image/png" href="/purehdl_logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet"><!-- Client script for theme and language --><script type="module">(function(){const e=localStorage.getItem("phdl-theme"),t=window.matchMedia("(prefers-color-scheme: dark)").matches;(e==="dark"||!e&&t)&&document.documentElement.classList.add("dark")})();</script><style>
+*,:before,:after{--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / .5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / .5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }html,:host{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Inter,Noto Sans SC,system-ui,-apple-system,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:JetBrains Mono,Fira Code,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}ol,ul,menu{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}button,[role=button]{cursor:pointer}:disabled{cursor:default}img,svg,video,canvas,audio,iframe,embed,object{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}:root{--bg-primary: #ffffff;--bg-secondary: #f8fafb;--bg-tertiary: #f1f5f9;--border: #e2e8f0;--text-primary: #0f172a;--text-secondary: #64748b;--code-bg: #f8fafc}.dark{--bg-primary: #0a0a0a;--bg-secondary: #12121a;--bg-tertiary: #1a1a2e;--border: #2a2a3e;--text-primary: #e2e2f0;--text-secondary: #8888aa;--code-bg: #0d0d0f}*,*:before,*:after{transition-property:background-color,border-color,color;transition-duration:.2s;transition-timing-function:ease}html{scroll-behavior:smooth}.container{width:100%}@media(min-width:640px){.container{max-width:640px}}@media(min-width:768px){.container{max-width:768px}}@media(min-width:1024px){.container{max-width:1024px}}@media(min-width:1280px){.container{max-width:1280px}}@media(min-width:1536px){.container{max-width:1536px}}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-2{margin-left:.5rem}.ml-6{margin-left:1.5rem}.ml-auto{margin-left:auto}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.hidden{display:none}.h-2{height:.5rem}.h-3{height:.75rem}.h-6{height:1.5rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-16{height:4rem}.w-2{width:.5rem}.w-3{width:.75rem}.w-6{width:1.5rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-full{width:100%}.max-w-6xl{max-width:72rem}.shrink-0{flex-shrink:0}.cursor-pointer{cursor:pointer}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-\[var\(--border\)\]{border-color:var(--border)}.border-phdl-500\/20{border-color:#22c55e33}.border-phdl-500\/30{border-color:#22c55e4d}.border-red-500\/20{border-color:#ef444433}.bg-\[var\(--bg-primary\)\]{background-color:var(--bg-primary)}.bg-\[var\(--bg-secondary\)\]{background-color:var(--bg-secondary)}.bg-\[var\(--bg-tertiary\)\]{background-color:var(--bg-tertiary)}.bg-\[var\(--code-bg\)\]{background-color:var(--code-bg)}.bg-phdl-500{--tw-bg-opacity: 1;background-color:rgb(34 197 94 / var(--tw-bg-opacity, 1))}.bg-phdl-500\/10{background-color:#22c55e1a}.bg-phdl-500\/5{background-color:#22c55e0d}.bg-red-500\/60{background-color:#ef444499}.bg-yellow-500\/60{background-color:#eab30899}.bg-green-500\/60{background-color:#22c55e99}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-8{padding-top:2rem;padding-bottom:2rem}.py-24{padding-top:6rem;padding-bottom:6rem}.pt-24{padding-top:6rem}.pb-16{padding-bottom:4rem}.text-left{text-align:left}.text-center{text-align:center}.font-mono{font-family:JetBrains Mono,Fira Code,monospace}.font-sans{font-family:Inter,Noto Sans SC,system-ui,-apple-system,sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-loose{line-height:2}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.text-\[var\(--text-primary\)\]{color:var(--text-primary)}.text-\[var\(--text-secondary\)\]{color:var(--text-secondary)}.text-phdl-500{--tw-text-opacity: 1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.text-red-400{--tw-text-opacity: 1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity: 1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.no-underline{text-decoration-line:none}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-lg{--tw-shadow: 0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1);--tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-phdl-500\/20{--tw-shadow-color: rgb(34 197 94 / .2);--tw-shadow: var(--tw-shadow-colored)}.backdrop-blur-xl{--tw-backdrop-blur: blur(24px);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-filter{backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-300{transition-duration:.3s}.hover\:border-phdl-500:hover{--tw-border-opacity: 1;border-color:rgb(34 197 94 / var(--tw-border-opacity, 1))}.hover\:bg-phdl-600:hover{--tw-bg-opacity: 1;background-color:rgb(22 163 74 / var(--tw-bg-opacity, 1))}.hover\:text-phdl-500:hover{--tw-text-opacity: 1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}@media(min-width:640px){.sm\:inline{display:inline}.sm\:inline-flex{display:inline-flex}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-5xl{font-size:3rem;line-height:1}}@media(min-width:768px){.md\:flex{display:flex}}
+
+/* Docs prose styles */
+.doc-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+.doc-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+.doc-content p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+.doc-content p strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.doc-content ul {
+  margin-bottom: 1.25rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+.doc-content ul li {
+  margin-bottom: 0.4rem;
+}
+.doc-content ul li strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.doc-content blockquote {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid #22c55e;
+  background: var(--bg-secondary);
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.625;
+}
+.doc-content blockquote p {
+  margin-bottom: 0;
+}
+.doc-content .code-block-wrapper {
+  margin-bottom: 1.5rem;
+}
+.doc-content .code-block-wrapper pre {
+  margin: 0;
+}
+.doc-content .inline-code {
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  background: var(--code-bg);
+  font-family: JetBrains Mono, Fira Code, monospace;
+  font-size: 0.8rem;
+  color: #22c55e;
+  border: 1px solid var(--border);
+}
+.dark .doc-content .inline-code {
+  background: #0d0d0f;
+}
+.doc-content .pain-point-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.doc-content .pain-point-card {
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+.doc-content .pain-point-card p {
+  margin-bottom: 0;
+  font-size: 0.875rem;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.doc-content thead {
+  background: var(--bg-tertiary);
+}
+.doc-content th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.doc-content td {
+  padding: 0.75rem 1rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+.doc-content tbody tr:last-child td {
+  border-bottom: none;
+}
+.doc-content tbody tr {
+  transition: background-color 0.15s ease;
+}
+.doc-content tbody tr:hover {
+  background-color: rgba(34, 197, 94, 0.02);
+}
+</style></head> <body class="bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans antialiased">   <nav class="fixed top-0 w-full z-50 bg-[var(--bg-primary)]/90 backdrop-blur-xl border-b border-[var(--border)]"> <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center gap-6"> <a href="/" class="flex items-center gap-2 no-underline shrink-0"> <img src="/purehdl_logo.png" alt="PureHDL" class="w-8 h-8 rounded-lg"> <span class="font-bold text-lg text-[var(--text-primary)] hidden sm:inline"> <span class="text-phdl-500">Pure</span>HDL
+</span> </a> <div class="hidden md:flex items-center gap-6 ml-6"> <a href="/en/docs/" class="text-sm text-phdl-500 no-underline font-medium transition-colors">Docs</a> <a href="/#principles" class="text-sm text-[var(--text-secondary)] hover:text-phdl-500 no-underline font-medium transition-colors">Principles</a> <a href="/#code" class="text-sm text-[var(--text-secondary)] hover:text-phdl-500 no-underline font-medium transition-colors">Code</a> <a href="/#comparison" class="text-sm text-[var(--text-secondary)] hover:text-phdl-500 no-underline font-medium transition-colors">Comparison</a> <a href="/#roadmap" class="text-sm text-[var(--text-secondary)] hover:text-phdl-500 no-underline font-medium transition-colors">Roadmap</a> </div> <div class="ml-auto flex items-center gap-3"> <a href="/zh/" class="px-3 py-1.5 text-xs font-medium rounded-full border border-[var(--border)]
+                 text-[var(--text-secondary)] hover:text-phdl-500 hover:border-phdl-500
+                 no-underline transition-colors"> 中文 </a> <button id="themeToggle" class="w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border)]
+                 text-[var(--text-secondary)] hover:text-phdl-500 hover:border-phdl-500
+                 cursor-pointer transition-colors" aria-label="Toggle theme"> <svg id="sunIcon" class="hidden dark:block" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg> <svg id="moonIcon" class="block dark:hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> <a href="https://github.com/PureHDL" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium
+                 rounded-lg bg-phdl-500 hover:bg-phdl-600 text-white no-underline transition-colors"> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"></path></svg> GitHub </a> </div> </div> </nav>  <section class="pt-24 pb-16 px-4 sm:px-6"> <div class="max-w-6xl mx-auto doc-content"> <div class="mb-16"> <span class="inline-block px-3 py-1 rounded-full border border-phdl-500/30 bg-phdl-500/5 text-phdl-500 text-xs font-medium mb-4">Design Docs</span> <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-6">PureHDL — AI-Friendly Hardware Design</h1> <blockquote> <p>补充设计原则：PureHDL 不仅要让人好写，也要让 AI 好生成。</p> </blockquote> </div>
+
+<h2>为什么 Rust 比 C 更受 AI 青睐</h2>
+<p>这不是玄学。LLM 生成 Rust 代码的成功率显著高于 C，原因不是 LLM "更懂" Rust，而是 Rust 的语言设计本身降低了 LLM 的犯错概率。</p>
+
+<h3>1. 低熵——同样的事只有一种写法</h3>
+<div class="overflow-x-auto"> <table> <thead> <tr> <th>维度</th> <th>C</th> <th>Rust</th> </tr> </thead> <tbody>
+<tr> <td>内存管理</td> <td>malloc/free/calloc/... + 无限种错误方式</td> <td>所有权 + 借用，编译器保证正确</td> </tr>
+<tr> <td>错误处理</td> <td>返回值检查/errno/setjmp longjmp/信号</td> <td>Result&lt;T, E&gt;，统一模式</td> </tr>
+<tr> <td>字符串</td> <td>char*/char[]/wchar_t/各种编码</td> <td>String/&amp;str，编码保证</td> </tr>
+</tbody> </table> </div>
+
+<p>低熵的意义：LLM 生成代码时，选择越少，正确率越高。C 有 5 种方式"正确"地管理内存，但 LLM 选错 4 种。Rust 只有 1 种，LLM 选对的概率高得多。</p>
+
+<h3>2. 类型系统就是给 LLM 的说明书</h3>
+<p>Rust 的类型系统不仅是给人看的，更是给 LLM 的<strong>隐式上下文</strong>：</p>
+<div class="code-block-wrapper"> <div class="rounded-2xl border border-[var(--border)] overflow-hidden bg-[var(--bg-secondary)]"> <div class="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)] bg-[var(--bg-tertiary)]"> <div class="flex gap-1.5"> <span class="w-3 h-3 rounded-full bg-red-500/60"></span> <span class="w-3 h-3 rounded-full bg-yellow-500/60"></span> <span class="w-3 h-3 rounded-full bg-green-500/60"></span> </div> <span class="text-xs text-[var(--text-secondary)] ml-2">Rust</span> </div> <pre class="p-4 text-xs leading-relaxed overflow-x-auto bg-[var(--code-bg)] font-mono"><code>fn process(data: &amp;[u8]) -&gt; Result&lt;Vec&lt;u8&gt;, ParseError&gt;</code></pre> </div> </div>
+<p>LLM 从签名就能推断：data 是只读借用，不会被修改；返回值可能失败（Result），调用方必须处理；失败的类型是 ParseError。</p>
+
+<h3>3. 编译器反馈作为训练信号</h3>
+<p>Rust 的编译器错误信息异常详细。LLM 写 Rust 代码 → 编译器报错 → 错误信息描述问题 + 建议修复 → LLM 修正 → 编译器通过。这个过程产生了大量高质量的<strong>错误-修复配对</strong>训练数据。</p>
+
+<h3>4. 确定性映射</h3>
+<p>Rust 中：<code class="inline-code">let x = foo()</code> → 要么得到一个值，要么得到一个编译错误。C 中：<code class="inline-code">int x = foo();</code> → x 可能是未初始化、可能是垃圾值、可能是正确值。</p>
+
+<h2>这个怎么应用到 PureHDL</h2>
+<p>Verilog 在 AI 友好性上的问题不比 C 少。PureHDL 可以从设计上直接解决。</p>
+
+<h3>问题 1：Verilog 的熵太高</h3>
+<div class="overflow-x-auto"> <table> <thead> <tr> <th>概念</th> <th>Verilog 的写法数量</th> <th>PureHDL 的写法数量</th> </tr> </thead> <tbody>
+<tr> <td>声明信号</td> <td>reg / wire / logic / 不声明</td> <td><strong>1</strong> — 自动推断</td> </tr>
+<tr> <td>赋值</td> <td>阻塞 = / 非阻塞 &lt;=</td> <td><strong>1</strong> — 只有 =</td> </tr>
+<tr> <td>敏感列表</td> <td>@(a or b) / @(*) / @(posedge clk)</td> <td><strong>1</strong> — seq/comb</td> </tr>
+<tr> <td>例化模块</td> <td>按位置 / 按名字 / 混用</td> <td><strong>1</strong> — 类型安全的接口组合</td> </tr>
+<tr> <td>FSM</td> <td>每个工程师有自己的风格</td> <td><strong>1</strong> — fsm 声明式</td> </tr>
+<tr> <td>位宽</td> <td>自动截断 / 手动截断 / 扩展</td> <td><strong>1</strong> — 显式，不自动截断</td> </tr>
+</tbody> </table> </div>
+
+<h3>问题 2：类型系统是给 LLM 的上下文</h3>
+<div class="code-block-wrapper"> <div class="rounded-2xl border border-[var(--border)] overflow-hidden bg-[var(--bg-secondary)]"> <div class="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)] bg-[var(--bg-tertiary)]"> <div class="flex gap-1.5"> <span class="w-3 h-3 rounded-full bg-red-500/60"></span> <span class="w-3 h-3 rounded-full bg-yellow-500/60"></span> <span class="w-3 h-3 rounded-full bg-green-500/60"></span> </div> <span class="text-xs text-[var(--text-secondary)] ml-2">PureHDL</span> </div> <pre class="p-4 text-xs leading-relaxed overflow-x-auto bg-[var(--code-bg)] font-mono"><code>// AI 从签名就能知道全部信息
+module Fifo #(Width: UInt = 8, Depth: UInt = 16) (
+    clk:   In&lt;Clock&gt;,
+    wdata: In&lt;UInt[Width]&gt;,
+    full:  Out&lt;Bool&gt;,
+)</code></pre> </div> </div>
+<p>方向显式：In&lt;T&gt;/Out&lt;T&gt; → AI 不用猜信号方向。宽度在类型中：UInt[Width] → AI 不用追踪位宽。时钟域显式：seq(clk) → AI 知道哪些信号在哪个时钟域。</p>
+
+<h3>问题 3：确定性综合</h3>
+<p>PureHDL 的承诺：<strong>能编译就能综合</strong>。不存在"仿真通过但综合失败"的情况。AI 不需要知道 Verilog 的哪些子集是可综合的——PureHDL 只有可综合子集。</p>
+
+<h3>问题 4：模式化构造减少 LLM 的犯错空间</h3>
+<div class="code-block-wrapper"> <div class="rounded-2xl border border-[var(--border)] overflow-hidden bg-[var(--bg-secondary)]"> <div class="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)] bg-[var(--bg-tertiary)]"> <div class="flex gap-1.5"> <span class="w-3 h-3 rounded-full bg-red-500/60"></span> <span class="w-3 h-3 rounded-full bg-yellow-500/60"></span> <span class="w-3 h-3 rounded-full bg-green-500/60"></span> </div> <span class="text-xs text-[var(--text-secondary)] ml-2">PureHDL</span> </div> <pre class="p-4 text-xs leading-relaxed overflow-x-auto bg-[var(--code-bg)] font-mono"><code>// 状态机——LLM 只需要枚举状态和转换
+fsm(onehot) Controller {
+    state Idle, Fetch, Decode;
+    Idle -&gt; Fetch when start;
+    out.busy = (state != Idle);
+}
+
+// 时序逻辑——LLM 不需要关心敏感列表
+seq(clk, rst) {
+    if rst { count = 0 }
+    elif en { count = count + 1 }
+}</code></pre> </div> </div>
+
+<h3>问题 5：错误信息的可操作性</h3>
+<div class="code-block-wrapper"> <div class="rounded-2xl border border-[var(--border)] overflow-hidden bg-[var(--bg-secondary)]"> <div class="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)] bg-[var(--bg-tertiary)]"> <div class="flex gap-1.5"> <span class="w-3 h-3 rounded-full bg-red-500/60"></span> <span class="w-3 h-3 rounded-full bg-yellow-500/60"></span> <span class="w-3 h-3 rounded-full bg-green-500/60"></span> </div> <span class="text-xs text-[var(--text-secondary)] ml-2">phdlc</span> </div> <pre class="p-4 text-xs leading-relaxed overflow-x-auto bg-[var(--code-bg)] font-mono"><code>error[E0301]: width mismatch
+  ┌─ src/counter.phdl:8:12
+  │
+8 │     c = a + b;
+  │       -------- expected 8 bits, got 9
+  │
+  = help: use explicit truncation: c = (a + b)[7:0]
+  = help: or widen c: Out&lt;UInt[9]&gt;</code></pre> </div> </div>
+
+<h2>对编译器设计的影响</h2>
+<h3>当前可以做的</h3>
+<ol>
+<li><strong>错误信息质量</strong> — 从 MVP 开始就写好错误信息，每条错误附带建议修复</li>
+<li><strong>确定性语法</strong> — 没有"两种等价写法"，每种概念一种语法</li>
+<li><strong>模式化构造</strong> — FSM、计数器、FIFO 等常见模式的专用语法</li>
+<li><strong>类型辅助信息</strong> — 类型系统中包含足够信息，不需要额外注释</li>
+</ol>
+<h3>未来可以做的</h3>
+<ol start="5">
+<li><strong>AST 层面的 AI 辅助</strong> — phdlc suggest 命令，根据模块签名推荐实现</li>
+<li><strong>PureHDL 到自然语言的文档生成</strong> — 从类型签名 + 代码结构自动生成文档</li>
+<li><strong>PureHDL JSON 表示</strong> — 导出 AST 为 JSON，方便 LLM 理解和操作</li>
+</ol>
+
+<h2>总结</h2>
+<div class="overflow-x-auto"> <table> <thead> <tr> <th>语言</th> <th>AI 友好度</th> <th>原因</th> </tr> </thead> <tbody>
+<tr> <td>C</td> <td>❌</td> <td>熵太高，隐式行为太多，错误处理不统一</td> </tr>
+<tr> <td>Rust</td> <td>✅</td> <td>低熵、强类型、确定性、好错误信息</td> </tr>
+<tr> <td>Verilog</td> <td>❌</td> <td>6 种方式写同一个东西、仿真综合不一致、弱类型</td> </tr>
+<tr> <td>SystemVerilog</td> <td>🤷</td> <td>加了类型但没解决根本问题，方言分裂反而增加了熵</td> </tr>
+<tr> <td><strong>PureHDL</strong></td> <td><strong>✅ 目标</strong></td> <td><strong>单一写法、类型安全、100% 可综合、好错误信息</strong></td> </tr>
+</tbody> </table> </div>
+
+</div> </section>  <footer class="border-t border-[var(--border)] py-8 px-4 sm:px-6"> <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"> <div class="flex items-center gap-2"> <img src="/purehdl_logo.png" alt="PureHDL" class="w-6 h-6 rounded"> <span class="text-xs text-[var(--text-secondary)]">
+PureHDL — Apache 2.0 License </span> </div> <div class="flex items-center gap-4 text-xs text-[var(--text-secondary)]"> <a href="https://github.com/PureHDL" target="_blank" class="hover:text-phdl-500 no-underline transition-colors">GitHub</a> <span>·</span> <span>🦀 Built with Rust</span> </div> </div> </footer>  <script type="module">document.getElementById("themeToggle").addEventListener("click",()=>{document.documentElement.classList.toggle("dark"),localStorage.setItem("phdl-theme",document.documentElement.classList.contains("dark")?"dark":"light")});</script>  </body></html>

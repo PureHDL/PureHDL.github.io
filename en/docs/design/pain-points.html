@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="en" class> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Pain Points Analysis — Why PureHDL Exists</title><link rel="icon" type="image/png" href="/purehdl_logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet"><!-- Client script for theme and language --><script type="module">(function(){const e=localStorage.getItem("phdl-theme"),t=window.matchMedia("(prefers-color-scheme: dark)").matches;(e==="dark"||!e&&t)&&document.documentElement.classList.add("dark")})();</script><style>
+*,:before,:after{--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / .5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / .5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }html,:host{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Inter,Noto Sans SC,system-ui,-apple-system,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:JetBrains Mono,Fira Code,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}ol,ul,menu{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}button,[role=button]{cursor:pointer}:disabled{cursor:default}img,svg,video,canvas,audio,iframe,embed,object{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}:root{--bg-primary: #ffffff;--bg-secondary: #f8fafb;--bg-tertiary: #f1f5f9;--border: #e2e8f0;--text-primary: #0f172a;--text-secondary: #64748b;--code-bg: #f8fafc}.dark{--bg-primary: #0a0a0a;--bg-secondary: #12121a;--bg-tertiary: #1a1a2e;--border: #2a2a3e;--text-primary: #e2e2f0;--text-secondary: #8888aa;--code-bg: #0d0d0f}*,*:before,*:after{transition-property:background-color,border-color,color;transition-duration:.2s;transition-timing-function:ease}html{scroll-behavior:smooth}.container{width:100%}@media(min-width:640px){.container{max-width:640px}}@media(min-width:768px){.container{max-width:768px}}@media(min-width:1024px){.container{max-width:1024px}}@media(min-width:1280px){.container{max-width:1280px}}@media(min-width:1536px){.container{max-width:1536px}}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-2{margin-left:.5rem}.ml-6{margin-left:1.5rem}.ml-auto{margin-left:auto}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.hidden{display:none}.h-2{height:.5rem}.h-3{height:.75rem}.h-6{height:1.5rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-16{height:4rem}.w-2{width:.5rem}.w-3{width:.75rem}.w-6{width:1.5rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-full{width:100%}.max-w-6xl{max-width:72rem}.shrink-0{flex-shrink:0}.cursor-pointer{cursor:pointer}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-\[var\(--border\)\]{border-color:var(--border)}.border-phdl-500\/20{border-color:#22c55e33}.border-phdl-500\/30{border-color:#22c55e4d}.border-red-500\/20{border-color:#ef444433}.bg-\[var\(--bg-primary\)\]{background-color:var(--bg-primary)}.bg-\[var\(--bg-secondary\)\]{background-color:var(--bg-secondary)}.bg-\[var\(--bg-tertiary\)\]{background-color:var(--bg-tertiary)}.bg-\[var\(--code-bg\)\]{background-color:var(--code-bg)}.bg-phdl-500{--tw-bg-opacity: 1;background-color:rgb(34 197 94 / var(--tw-bg-opacity, 1))}.bg-phdl-500\/10{background-color:#22c55e1a}.bg-phdl-500\/5{background-color:#22c55e0d}.bg-red-500\/60{background-color:#ef444499}.bg-yellow-500\/60{background-color:#eab30899}.bg-green-500\/60{background-color:#22c55e99}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-8{padding-top:2rem;padding-bottom:2rem}.py-24{padding-top:6rem;padding-bottom:6rem}.pt-24{padding-top:6rem}.pb-16{padding-bottom:4rem}.text-left{text-align:left}.text-center{text-align:center}.font-mono{font-family:JetBrains Mono,Fira Code,monospace}.font-sans{font-family:Inter,Noto Sans SC,system-ui,-apple-system,sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-loose{line-height:2}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.text-\[var\(--text-primary\)\]{color:var(--text-primary)}.text-\[var\(--text-secondary\)\]{color:var(--text-secondary)}.text-phdl-500{--tw-text-opacity: 1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.text-red-400{--tw-text-opacity: 1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity: 1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.no-underline{text-decoration-line:none}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-lg{--tw-shadow: 0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1);--tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-phdl-500\/20{--tw-shadow-color: rgb(34 197 94 / .2);--tw-shadow: var(--tw-shadow-colored)}.backdrop-blur-xl{--tw-backdrop-blur: blur(24px);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-filter{backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-300{transition-duration:.3s}.hover\:border-phdl-500:hover{--tw-border-opacity: 1;border-color:rgb(34 197 94 / var(--tw-border-opacity, 1))}.hover\:bg-phdl-600:hover{--tw-bg-opacity: 1;background-color:rgb(22 163 74 / var(--tw-bg-opacity, 1))}.hover\:text-phdl-500:hover{--tw-text-opacity: 1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}@media(min-width:640px){.sm\:inline{display:inline}.sm\:inline-flex{display:inline-flex}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-5xl{font-size:3rem;line-height:1}}@media(min-width:768px){.md\:flex{display:flex}}
+
+/* Docs prose styles */
+.doc-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+.doc-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+.doc-content p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+.doc-content p strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.doc-content ul {
+  margin-bottom: 1.25rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+.doc-content ul li {
+  margin-bottom: 0.4rem;
+}
+.doc-content ul li strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.doc-content blockquote {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid #22c55e;
+  background: var(--bg-secondary);
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.625;
+}
+.doc-content blockquote p {
+  margin-bottom: 0;
+}
+.doc-content .code-block-wrapper {
+  margin-bottom: 1.5rem;
+}
+.doc-content .code-block-wrapper pre {
+  margin: 0;
+}
+.doc-content .inline-code {
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  background: var(--code-bg);
+  font-family: JetBrains Mono, Fira Code, monospace;
+  font-size: 0.8rem;
+  color: #22c55e;
+  border: 1px solid var(--border);
+}
+.dark .doc-content .inline-code {
+  background: #0d0d0f;
+}
+.doc-content .pain-point-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.doc-content .pain-point-card {
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+.doc-content .pain-point-card p {
+  margin-bottom: 0;
+  font-size: 0.875rem;
+}
+.doc-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.doc-content thead {
+  background: var(--bg-tertiary);
+}
+.doc-content th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.doc-content td {
+  padding: 0.75rem 1rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+.doc-content tbody tr:last-child td {
+  border-bottom: none;
+}
+.doc-content tbody tr {
+  transition: background-color 0.15s ease;
+}
+.doc-content tbody tr:hover {
+  background-color: rgba(34, 197, 94, 0.02);
+}
+</style></head> <body class="bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans antialiased">   <nav class="fixed top-0 w-full z-50 bg-[var(--bg-primary)]/90 backdrop-blur-xl border-b border-[var(--border)]"> <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center gap-6"> <a href="/" class="flex items-center gap-2 no-underline shrink-0"> <img src="/purehdl_logo.png" alt="PureHDL" class="w-8 h-8 rounded-lg"> <span class="font-bold text-lg text-[var(--text-primary)] hidden sm:inline"> <span class="text-phdl-500">Pure</span>HDL
+</span> </a> <div class="hidden md:flex items-center gap-6 ml-6"> <a href="/en/docs/" class="text-sm text-phdl-500 no-underline font-medium transition-colors">Docs</a> <a href="/#principles" class="text-sm text-[var(--text-secondary)] hover:text-phdl-500 no-underline font-medium transition-colors">Principles</a> <a href="/#code" class="text-sm text-[var(--text-secondary)] hover:text-phdl-500 no-underline font-medium transition-colors">Code</a> <a href="/#comparison" class="text-sm text-[var(--text-secondary)] hover:text-phdl-500 no-underline font-medium transition-colors">Comparison</a> <a href="/#roadmap" class="text-sm text-[var(--text-secondary)] hover:text-phdl-500 no-underline font-medium transition-colors">Roadmap</a> </div> <div class="ml-auto flex items-center gap-3"> <a href="/zh/" class="px-3 py-1.5 text-xs font-medium rounded-full border border-[var(--border)]
+                 text-[var(--text-secondary)] hover:text-phdl-500 hover:border-phdl-500
+                 no-underline transition-colors"> 中文 </a> <button id="themeToggle" class="w-9 h-9 flex items-center justify-center rounded-lg border border-[var(--border)]
+                 text-[var(--text-secondary)] hover:text-phdl-500 hover:border-phdl-500
+                 cursor-pointer transition-colors" aria-label="Toggle theme"> <svg id="sunIcon" class="hidden dark:block" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg> <svg id="moonIcon" class="block dark:hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> <a href="https://github.com/PureHDL" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium
+                 rounded-lg bg-phdl-500 hover:bg-phdl-600 text-white no-underline transition-colors"> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"></path></svg> GitHub </a> </div> </div> </nav>  <section class="pt-24 pb-16 px-4 sm:px-6"> <div class="max-w-6xl mx-auto doc-content"> <div class="mb-16"> <span class="inline-block px-3 py-1 rounded-full border border-phdl-500/30 bg-phdl-500/5 text-phdl-500 text-xs font-medium mb-4">Design Docs</span> <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-6">Pain Points Analysis — Why PureHDL Exists</h1> <blockquote> <p>分析现有 HDL 的核心痛点，指导 PureHDL 的设计取舍。</p> </blockquote> </div> <!-- 1. Verilog / SystemVerilog --> <h2>1. Verilog / SystemVerilog — 40 年的历史债</h2> <h3>1.1 <code class="inline-code">reg</code> vs <code class="inline-code">wire</code> 的原罪</h3> <div class="code-block-wrapper"> <div class="rounded-2xl border border-[var(--border)] overflow-hidden bg-[var(--bg-secondary)]"> <div class="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)] bg-[var(--bg-tertiary)]"> <div class="flex gap-1.5"> <span class="w-3 h-3 rounded-full bg-red-500/60"></span> <span class="w-3 h-3 rounded-full bg-yellow-500/60"></span> <span class="w-3 h-3 rounded-full bg-green-500/60"></span> </div> <span class="text-xs text-[var(--text-secondary)] ml-2">Verilog</span> </div> <pre class="p-4 text-xs leading-relaxed overflow-x-auto bg-[var(--code-bg)] font-mono"><code>reg [7:0] cnt;       // 你以为这是寄存器
+wire [7:0] result;   // 你以为这是连线
+
+// 实际上：
+// reg ≠ register。reg = "过程赋值目标"
+// wire ≠ wire。wire = "连续赋值目标"</code></pre> </div> </div> <p><code class="inline-code">reg</code> 这个关键字名完全是误导。出师表里可以声明一个 <code class="inline-code">reg</code> 然后用在组合逻辑里，它根本不会变成寄存器。</p> <p>SystemVerilog 加了 <code class="inline-code">logic</code> 来替代 <code class="inline-code">reg</code>，但 <code class="inline-code">wire</code> 还在用，现在变成三选一：<code class="inline-code">reg</code> / <code class="inline-code">wire</code> / <code class="inline-code">logic</code>。选择更多，困惑更多。</p> <p><strong>根本原因：语言的类型系统没有把"存储语义"和"赋值方式"分开。</strong></p> <h3>1.2 阻塞 <code class="inline-code">=</code> / 非阻塞 <code class="inline-code">&lt;=</code> 的陷阱</h3> <div class="code-block-wrapper"> <div class="rounded-2xl border border-[var(--border)] overflow-hidden bg-[var(--bg-secondary)]"> <div class="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)] bg-[var(--bg-tertiary)]"> <div class="flex gap-1.5"> <span class="w-3 h-3 rounded-full bg-red-500/60"></span> <span class="w-3 h-3 rounded-full bg-yellow-500/60"></span> <span class="w-3 h-3 rounded-full bg-green-500/60"></span> </div> <span class="text-xs text-[var(--text-secondary)] ml-2">Verilog</span> </div> <pre class="p-4 text-xs leading-relaxed overflow-x-auto bg-[var(--code-bg)] font-mono"><code>// 你以为行为一样
+always @(posedge clk) begin
+    a &lt;= b;
+    c &lt;= a;
+end
+// 实际：c 拿到的是 b 的旧值，不是新值</code></pre> </div> </div> <p>Verilog 用赋值方式决定综合行为，而不是用声明表达意图。任何严肃的 Verilog 开发者都踩过这个坑。</p> <h3>1.3 敏感列表</h3> <div class="code-block-wrapper"> <div class="rounded-2xl border border-[var(--border)] overflow-hidden bg-[var(--bg-secondary)]"> <div class="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)] bg-[var(--bg-tertiary)]"> <div class="flex gap-1.5"> <span class="w-3 h-3 rounded-full bg-red-500/60"></span> <span class="w-3 h-3 rounded-full bg-yellow-500/60"></span> <span class="w-3 h-3 rounded-full bg-green-500/60"></span> </div> <span class="text-xs text-[var(--text-secondary)] ml-2">Verilog</span> </div> <pre class="p-4 text-xs leading-relaxed overflow-x-auto bg-[var(--code-bg)] font-mono"><code>always @(a or b) begin  // 忘加 c → 仿真综合不一致
+    out = a &amp; b &amp; c;
+end</code></pre> </div> </div> <h3>1.4 <code class="inline-code">parameter</code> 不是类型安全的</h3> <div class="code-block-wrapper"> <div class="rounded-2xl border border-[var(--border)] overflow-hidden bg-[var(--bg-secondary)]"> <div class="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)] bg-[var(--bg-tertiary)]"> <div class="flex gap-1.5"> <span class="w-3 h-3 rounded-full bg-red-500/60"></span> <span class="w-3 h-3 rounded-full bg-yellow-500/60"></span> <span class="w-3 h-3 rounded-full bg-green-500/60"></span> </div> <span class="text-xs text-[var(--text-secondary)] ml-2">Verilog</span> </div> <pre class="p-4 text-xs leading-relaxed overflow-x-auto bg-[var(--code-bg)] font-mono"><code>parameter Width = 8;   // 不加范围
+parameter Depth = 256; // 编译时传负数也不报错</code></pre> </div> </div> <h3>1.5 <code class="inline-code">generate</code> 就是宏</h3> <div class="code-block-wrapper"> <div class="rounded-2xl border border-[var(--border)] overflow-hidden bg-[var(--bg-secondary)]"> <div class="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)] bg-[var(--bg-tertiary)]"> <div class="flex gap-1.5"> <span class="w-3 h-3 rounded-full bg-red-500/60"></span> <span class="w-3 h-3 rounded-full bg-yellow-500/60"></span> <span class="w-3 h-3 rounded-full bg-green-500/60"></span> </div> <span class="text-xs text-[var(--text-secondary)] ml-2">Verilog</span> </div> <pre class="p-4 text-xs leading-relaxed overflow-x-auto bg-[var(--code-bg)] font-mono"><code>generate
+    if (WIDTH &gt; 8) begin : gen_wide
+        // ... 无尽的 begin/end
+    end
+endgenerate</code></pre> </div> </div> <h3>1.6 <code class="inline-code">include</code> 文件地狱</h3> <div class="code-block-wrapper"> <div class="rounded-2xl border border-[var(--border)] overflow-hidden bg-[var(--bg-secondary)]"> <div class="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)] bg-[var(--bg-tertiary)]"> <div class="flex gap-1.5"> <span class="w-3 h-3 rounded-full bg-red-500/60"></span> <span class="w-3 h-3 rounded-full bg-yellow-500/60"></span> <span class="w-3 h-3 rounded-full bg-green-500/60"></span> </div> <span class="text-xs text-[var(--text-secondary)] ml-2">Verilog</span> </div> <pre class="p-4 text-xs leading-relaxed overflow-x-auto bg-[var(--code-bg)] font-mono"><code>`include "defines.v"
+`include "constants.v"
+`include "types.v"
+`include "fifo.v"</code></pre> </div> </div> <!-- 2. SystemVerilog --> <h2>2. SystemVerilog — 拯救还是灾难</h2> <p>SV 加了 interface、logic、assertion，但：</p> <ul> <li><code class="inline-code">logic</code> 不是 <code class="inline-code">reg</code> 也不是 <code class="inline-code">wire</code>，但有人还在用 <code class="inline-code">wire logic</code></li> <li><code class="inline-code">interface</code> 不支持类型参数化</li> <li><code class="inline-code">always_ff</code> / <code class="inline-code">always_comb</code> 解决了敏感列表，但没解决 reg/wire 问题</li> </ul> <!-- 3. 其他 HDL 的教训 --> <h2>3. 其他 HDL 的教训</h2> <h3>3.1 Chisel</h3> <ul> <li>输出 FIRRTL 不可读</li> <li>调试困难：生成网表和你写的 Scala 差异很大</li> <li>Java 工具链：sbt 慢，JVM 重</li> </ul> <h3>3.2 SpinalHDL</h3> <ul> <li>同样走 Scala/JVM 工具链</li> <li>文档差</li> <li>和 Chisel 一样不可读的输出</li> </ul> <h3>3.3 TL-Verilog</h3> <ul> <li>基于宏的 DSL</li> <li>不是独立语言</li> <li>调试时需要展开宏</li> </ul> <!-- 4. PureHDL 的回应 --> <h2>4. PureHDL 的回应</h2> <div class="overflow-x-auto"> <table> <thead> <tr> <th>Pain Point</th> <th>PureHDL Solution</th> </tr> </thead> <tbody> <tr> <td><strong class="text-red-400">reg/wire</strong></td> <td>No reg, no wire. Signal types inferred from context.</td> </tr> <tr> <td><strong class="text-red-400">Blocking/non-blocking</strong></td> <td>Single <code class="inline-code">=</code> operator. Context determines semantics.</td> </tr> <tr> <td><strong class="text-red-400">Sensitivity lists</strong></td> <td><code class="inline-code">seq(clk)</code> / <code class="inline-code">comb</code> blocks. No lists to forget.</td> </tr> <tr> <td><strong class="text-red-400">Weak parameters</strong></td> <td>Typed generics with default values. <code class="inline-code">#(Width: UInt = 8)</code></td> </tr> <tr> <td><strong class="text-red-400"><code class="inline-code">include</code> / <code class="inline-code">generate</code></strong></td> <td>Module system with <code class="inline-code">use</code>, <code class="inline-code">import</code>, generics.</td> </tr> <tr> <td><strong class="text-red-400">Unreadable output</strong></td> <td>Clean Verilog output with 1:1 mapping.</td> </tr> <tr> <td><strong class="text-red-400">No real interfaces</strong></td> <td>Strongly typed <code class="inline-code">interface</code> with type parameters.</td> </tr> <tr> <td><strong class="text-red-400">JVM toolchain burden</strong></td> <td>Native Rust compiler. No JVM required.</td> </tr> <tr> <td><strong class="text-red-400">Weak types</strong></td> <td>Full type system: width, direction, clock domain.</td> </tr> </tbody> </table> </div> </div> </section>  <footer class="border-t border-[var(--border)] py-8 px-4 sm:px-6"> <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"> <div class="flex items-center gap-2"> <img src="/purehdl_logo.png" alt="PureHDL" class="w-6 h-6 rounded"> <span class="text-xs text-[var(--text-secondary)]">
+PureHDL — Apache 2.0 License </span> </div> <div class="flex items-center gap-4 text-xs text-[var(--text-secondary)]"> <a href="https://github.com/PureHDL" target="_blank" class="hover:text-phdl-500 no-underline transition-colors">GitHub</a> <span>·</span> <span>🦀 Built with Rust</span> </div> </div> </footer>  <script type="module">document.getElementById("themeToggle").addEventListener("click",()=>{document.documentElement.classList.toggle("dark"),localStorage.setItem("phdl-theme",document.documentElement.classList.contains("dark")?"dark":"light")});</script>  </body></html>
